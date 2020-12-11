@@ -54,9 +54,13 @@ class XMLDirectoryMapper ():
                     if type(fileSize) != "<class 'str'>":
                         fileSize /= 1024.0
 
+                fileExtension = content.split(".")
+                fileExtension.pop(0)
+
                 attrs = {
-                    "name": content,
-                    "size": fileSize
+                    "name": content.split(".")[0],
+                    "size": fileSize,
+                    "extension": "".join(fileExtension)
                 }
 
                 file = self.XMLParser.createElement("file", parent = xmlParent, attributes = attrs)
